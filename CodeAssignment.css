@@ -1,0 +1,28 @@
+.title{
+    background-color: grey;
+     /* height:"70", alignItems: "center", padding: 4  */
+     display: flex;
+     flex-direction: row;
+    align-items: center;
+    justify-content:space-around;
+}
+.logo-image{
+    
+    margin: 20px;
+    width: 50; 
+    align-items: center;
+    height: 50;
+    border-radius: 5px;
+}
+
+.user-image{
+    align-self: center;
+    width: 50; 
+    height: 50 ;
+    border-radius: 5px;
+}
+.label{
+    background-color: aquamarine;
+    align-items: center;
+
+} 
