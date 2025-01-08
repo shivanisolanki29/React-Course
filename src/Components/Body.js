@@ -6,29 +6,31 @@ import Shimmer from "./Shimmer";
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [filterRestaurant, setfilterRestaurant] = useState([]);
 
   const handleClick = () => {
     const filteredList = listOfRestaurant.filter(
-      (res) => res.card.card.info.avgRating > 4
+      (res) => res.info.avgRating > 4
     );
     setListOfRestaurant(filteredList);
   };
 
-  const handleSearch = (e) => {
-    setSearchText(e.target.value);
-    let text = e.target.value;
+  // const handleSearch = (e) => {
+  //   setSearchText(e.target.value);
+  //   console.log(searchText);
 
-    const filteredRes = listOfRestaurant.filter((res) =>
-      res.card.card.info.name.toLowerCase().includes(searchText.toLowerCase())
-    );
-    console.log(searchText.length);
-    if (searchText.length > 1) {
-      setListOfRestaurant(filteredRes);
-    } else {
-      setListOfRestaurant(resList);
-    }
-    setListOfRestaurant(filteredRes);
-  };
+  //   const filteredRes = listOfRestaurant.filter((res) => {
+  //     //   // console.log(res.info.name);
+  //     res.info.name.toLowerCase().includes(searchText.toLowerCase());
+  //   });
+  //   console.log(searchText.length);
+  //   if (searchText.length === 0) {
+  //     setListOfRestaurant(listOfRestaurant);
+  //     // } else {
+  //     //   setListOfRestaurant(filteredRes);
+  //   }
+  //   setListOfRestaurant(filteredRes);
+  // };
 
   useEffect(() => {
     fetchData();
@@ -43,13 +45,18 @@ const Body = () => {
     setListOfRestaurant(
       json?.data?.cards[4].card.card.gridElements.infoWithStyle.restaurants
     );
+    setfilterRestaurant(
+      json?.data?.cards[4].card.card.gridElements.infoWithStyle.restaurants
+    );
   };
 
-  if (listOfRestaurant.length === 0) {
-    console.log("inside if");
-    return <Shimmer />;
-  }
-  return (
+  //Conditional Rendering
+  // if (listOfRestaurant.length === 0) {
+  //   return <Shimmer />;
+  // }
+  return listOfRestaurant.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       <p>{"value: " + searchText}</p>
       <div className="serach-bar">
@@ -59,20 +66,18 @@ const Body = () => {
             type="text"
             placeholder="search res..."
             value={searchText}
-            // onChange={(e) => setSearchText(e.target.value)}
-            onChange={handleSearch}
+            onChange={(e) => setSearchText(e.target.value)}
+            // onChange={handleSearch}
           ></input>
           <button
             className="search-btn"
             onClick={() => {
-              const filteredRes = listOfRestaurant.filter((res) =>
-                res.card.card.info.name
-                  .toLowerCase()
-                  .includes(searchText.toLowerCase())
+              const filteredRestaurant = listOfRestaurant.filter((res) =>
+                res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
-              console.log(searchText.length);
 
-              setListOfRestaurant(filteredRes);
+              setfilterRestaurant(filteredRestaurant);
+              console.log(searchText.length);
             }}
           >
             search
@@ -95,7 +100,7 @@ const Body = () => {
       </div>
 
       <div className="res-container">
-        {listOfRestaurant.map((restaurant, key) => (
+        {filterRestaurant.map((restaurant, key) => (
           <ResturantCard key={restaurant?.info?.id} resData={restaurant} />
         ))}
       </div>
