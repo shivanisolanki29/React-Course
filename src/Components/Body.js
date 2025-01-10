@@ -58,7 +58,6 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <p>{"value: " + searchText}</p>
       <div className="serach-bar">
         <div className="search">
           <input
