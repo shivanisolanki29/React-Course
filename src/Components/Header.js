@@ -5,10 +5,7 @@ import { Link } from "react-router";
 const Header = () => {
   const [islogin, setIsLogin] = useState(true);
 
-  console.log("header ");
-  useEffect(() => {
-    console.log("from useEffect");
-  }, [islogin]);
+  useEffect(() => {}, [islogin]);
 
   return (
     <div className="header">
