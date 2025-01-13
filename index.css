@@ -191,3 +191,10 @@ width: 100%;
     margin: 10px;
     background-color: aqua;
  }
+ .user-card{
+    padding: 10px;
+    border: 1px solid black;
+ }
+ .from{
+    color: #bd115b;
+ }
