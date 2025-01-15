@@ -5,13 +5,13 @@ import React from "react";
 class About extends React.Component {
   constructor(props) {
     super(props);
-    console.log("Parent Constructor");
+    // console.log("Parent Constructor");
   }
   componentDidMount() {
-    console.log("Parent component did Mount");
+    // console.log("Parent component did Mount");
   }
   render() {
-    console.log("Parent Render");
+    // console.log("Parent Render");
     return (
       <div className="body">
         <h1>About Us</h1>
@@ -20,9 +20,7 @@ class About extends React.Component {
           name={"Akshay from functional Component"}
           location={"Den Hauge"}
         /> */}
-        <UserClass name={"first"} location={"Den Hauge class"} />
-        <UserClass name={"second "} location={"Den Hauge class"} />
-        <UserClass name={"third "} location={"Den Hauge class"} />
+        <UserClass />
       </div>
     );
   }

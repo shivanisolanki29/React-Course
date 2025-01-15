@@ -4,37 +4,41 @@ class UserClass extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state={
-      count:0,
-       count2:1
-    }
+    this.state = {
+      userInfo: {
+        name: "dummy",
+        location: "dummy_location",
+        company: "default",
+        avatar_url: "dummyphoto",
+      },
+    };
+    console.log("constructor");
+  }
+  async componentDidMount() {
+    const data = await fetch("https://api.github.com/users/shivanisolanki29");
+    const json = await data.json();
 
-    console.log(this.props.name +"child Constructor")
+    this.setState({ userInfo: json });
+    console.log("component did mount");
   }
-  componentDidMount(){
-    console.log(this.props.name +"Child component did Mount")
+
+  componentDidUpdate() {
+    console.log("componenet did update");
   }
+componentWillUnmount(){
+  console.log("componenet will Unmount");
+}
   render() {
-    const { name, location } = this.props;
-    const {count,count2}=this.state
+    const { name, location, company, avatar_url } = this.state.userInfo;
 
-    console.log(this.props.name + "child render method");
+    console.log("render");
     return (
       <div className="user-card">
-        <button
-          onClick={() => {
-            this.setState({
-              count: this.state.count + 1,
-              count2: this.state.count2 * 2,
-            });
-          }}
-        >
-          Count :{count}
-        </button>
-        <h5>Count: {count2}</h5>
+        <img src={avatar_url} />
         <h4 className="from">From Class</h4>
         <h2>Name: {name}</h2>
-        <h4>Location: {location}</h4>
+        <h4>Location: {location} </h4>
+        <h4>Company: {company} </h4>
         <h5>contact: 0354872746</h5>
       </div>
     );
