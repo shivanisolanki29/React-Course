@@ -7,7 +7,6 @@ const ResturantCard = (props) => {
     <div className="res-card">
       <img
         className="res-logo"
-        // src="https://www.cubesnjuliennes.com/wp-content/uploads/2020/07/Chicken-Biryani-Recipe.jpg"
         src={CDN_URL + cloudinaryImageId}
         alt="res-card"
       />

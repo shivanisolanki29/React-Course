@@ -3,6 +3,8 @@ import resList from "../Utils/mockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
+import { RESTAURANT_API } from "../Utils/constants";
+import useOnlineStatus from "../Utils/useOnlineStatus";
 
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
@@ -16,32 +18,12 @@ const Body = () => {
     setListOfRestaurant(filteredList);
   };
 
-  // const handleSearch = (e) => {
-  //   setSearchText(e.target.value);
-  //   console.log(searchText);
-
-  //   const filteredRes = listOfRestaurant.filter((res) => {
-  //     //   // console.log(res.info.name);
-  //     res.info.name.toLowerCase().includes(searchText.toLowerCase());
-  //   });
-  //   console.log(searchText.length);
-  //   if (searchText.length === 0) {
-  //     setListOfRestaurant(listOfRestaurant);
-  //     // } else {
-  //     //   setListOfRestaurant(filteredRes);
-  //   }
-  //   setListOfRestaurant(filteredRes);
-  // };
-
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-      // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&collection=83639&tags=layout_CCS_Biryani&sortBy=&filters=&type=rcv2&offset=0&page_type=null"
-    );
+    const data = await fetch(RESTAURANT_API);
     const json = await data.json();
 
     setListOfRestaurant(
@@ -52,10 +34,12 @@ const Body = () => {
     );
   };
 
-  //Conditional Rendering
-  // if (listOfRestaurant.length === 0) {
-  //   return <Shimmer />;
-  // }
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false)
+    return (
+      <h1>Look like you're offline!! Please check your inter connection!!</h1>
+    );
+
   return listOfRestaurant.length === 0 ? (
     <Shimmer />
   ) : (
@@ -68,7 +52,6 @@ const Body = () => {
             placeholder="search res..."
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
-            // onChange={handleSearch}
           ></input>
           <button
             className="search-btn"
@@ -78,13 +61,11 @@ const Body = () => {
               );
 
               setfilterRestaurant(filteredRestaurant);
-              console.log(searchText.length);
             }}
           >
             search
           </button>
         </div>
-        {/* <button onClick={handleClick}>Top rated restaurat</button> */}
         <button
           className="filter-btn"
           onClick={

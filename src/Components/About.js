@@ -16,11 +16,14 @@ class About extends React.Component {
       <div className="body">
         <h1>About Us</h1>
         <h3>This is a food ordering app written in react FrameWork</h3>
-        {/* <User
+        <User
           name={"Akshay from functional Component"}
           location={"Den Hauge"}
-        /> */}
-        <UserClass />
+        />
+        <UserClass
+          name={"Akshay from class based Component"}
+          location={"Amsterdam"}
+        />
       </div>
     );
   }

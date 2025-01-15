@@ -152,8 +152,7 @@ width: 100%;
  justify-content: center;
 }
 .restaurant{
-    
-    max-width: 800px;
+    width: 900px;
 }
 .res-Name{
     font: 800;
