@@ -10,35 +10,30 @@ const Header = () => {
   useEffect(() => {}, [islogin]);
 
   return (
-    <div className="header">
-      <div className="logo-container">
-        <img
-          className="logo"
-          alt="Logo"
-          //   src="https://www.codester.com/static/uploads/items/000/018/18519/preview-xl.jpg"
-          src={LOGO_URL}
-        />
+    <div className="m-4 p-4 flex bg-pink-100 border-0 border-black justify-between shadow-lg rounded-md">
+      <div className="mr-10">
+        <img className="w-32 rounded-md" alt="Logo" src={LOGO_URL} />
       </div>
-      <div className="nav-items">
-        <ul>
-          <li>Online Status: {isOnline ? "✅ " : "❌"}</li>
-          <li>
+      <div className="mx-8 p-2 px-4 flex items-center">
+        <ul className="flex justify-between">
+          <li className="px-2">Online Status: {isOnline ? "✅ " : "❌"}</li>
+          <li className="px-2 hover:bg-red-200 rounded-md">
             <Link to="/">Home</Link>
           </li>
-          <li>
+          <li className="px-2 hover:bg-red-200 rounded-md">
             <Link to="/about">About</Link>
           </li>
 
-          <li>
+          <li className="px-2 hover:bg-red-200 rounded-md">
             <Link to="/contact">Contact Us</Link>
           </li>
-          <li>
+          <li className="px-2 hover:bg-red-200 rounded-md">
             <Link to="/grocery">Grocery</Link>
           </li>
-          <li>Cart</li>
-          <li>
+          <li className="px-2 hover:bg-red-200 rounded-md">Cart</li>
+          <li className="px-2 hover:bg-red-200 rounded-md">
             <button
-              className="btn-login"
+              className="btn-login font-semibold"
               onClick={() => {
                 setIsLogin(!islogin);
               }}
