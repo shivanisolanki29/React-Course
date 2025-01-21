@@ -4,9 +4,9 @@ const ResturantCard = (props) => {
   const { resData } = props;
   const { name, cuisines, avgRating, sla, cloudinaryImageId } = resData.info;
   return (
-    <div className="m-2 bg-gray-200 w-52 rounded-lg h-[350] hover:cursor-pointer">
+    <div className="m-2 bg-gray-200 w-52 rounded-lg h-[350] hover:cursor-pointer  ">
       <img
-        className="w-52 h-48 rounded-t-lg"
+        className="w-48 h-32 rounded-lg"
         src={CDN_URL + cloudinaryImageId}
         alt="res-card"
       />
@@ -23,4 +23,18 @@ const ResturantCard = (props) => {
   );
 };
 
+export const withDiscountedLabel = (ResturantCard) => {
+  return (props) => {
+    const { header, subHeader } =
+      props?.resData?.info?.aggregatedDiscountInfoV3;
+    return (
+      <div>
+        <label className="absolute m-2 py-1 px-2 my-[100px] text-white text-sm font-extrabold bg-gradient-to-t from-black via-gray w-48 rounded-md">
+          {header} {subHeader}
+        </label>
+        <ResturantCard {...props} />
+      </div>
+    );
+  };
+};
 export default ResturantCard;

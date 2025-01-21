@@ -1,4 +1,4 @@
-import ResturantCard from "./RestaurantCard";
+import ResturantCard, { withDiscountedLabel } from "./RestaurantCard";
 import resList from "../Utils/mockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
@@ -10,6 +10,8 @@ const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filterRestaurant, setfilterRestaurant] = useState([]);
+
+  const RestaurantCardDiscounted = withDiscountedLabel(ResturantCard);
 
   const handleClick = () => {
     const filteredList = listOfRestaurant.filter(
@@ -76,13 +78,16 @@ const Body = () => {
 
       <div className="flex flex-wrap">
         {filterRestaurant.map((restaurant, key) => (
-          <Link
-            key={restaurant?.info?.id}
-            to={"/restaurants/" + restaurant?.info?.id}
-          >
-            {" "}
-            <ResturantCard resData={restaurant} />
-          </Link>
+          <div key={restaurant?.info?.id}>
+            <Link to={"/restaurants/" + restaurant?.info?.id}>
+              {Object.keys(restaurant?.info?.aggregatedDiscountInfoV3).length !=
+              0 ? (
+                <RestaurantCardDiscounted resData={restaurant} />
+              ) : (
+                <ResturantCard resData={restaurant} />
+              )}
+            </Link>
+          </div>
         ))}
       </div>
     </div>
