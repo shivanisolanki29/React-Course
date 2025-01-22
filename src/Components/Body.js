@@ -80,12 +80,12 @@ const Body = () => {
         {filterRestaurant.map((restaurant, key) => (
           <div key={restaurant?.info?.id}>
             <Link to={"/restaurants/" + restaurant?.info?.id}>
-              {Object.keys(restaurant?.info?.aggregatedDiscountInfoV3).length !=
-              0 ? (
+              {/* {Object.keys(restaurant?.info?.aggregatedDiscountInfoV3)
+                .length !== 0 ? (
                 <RestaurantCardDiscounted resData={restaurant} />
-              ) : (
+              ) : ( */}
                 <ResturantCard resData={restaurant} />
-              )}
+              {/* )} */}
             </Link>
           </div>
         ))}
