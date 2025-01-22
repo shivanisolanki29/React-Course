@@ -5,7 +5,7 @@ const User = ({ name, location }) => {
   const [count, setCount] = useState(0);
   useEffect(() => {
     //api call
-    console.log("useEffect");
+    // console.log("useEffect");
   }, [count]);
 
   return (

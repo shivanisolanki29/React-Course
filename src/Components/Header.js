@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LOGO_URL } from "../Utils/constants";
 import { Link } from "react-router";
 import useOnlineStatus from "../Utils/useOnlineStatus";
+import UserContext from "../Utils/UserContext";
 
 const Header = () => {
   const [islogin, setIsLogin] = useState(true);
   const isOnline = useOnlineStatus();
+
+  const user = useContext(UserContext);
+  // const {loggedInUser} = useContext(UserContext);
 
   useEffect(() => {}, [islogin]);
 
@@ -40,6 +44,9 @@ const Header = () => {
             >
               {islogin ? "Login" : "Logout"}
             </button>
+          </li>
+          <li className="px-2 hover:bg-red-200 rounded-md font-bold bg-orange-300">
+            {user.loggedInUser}
           </li>
         </ul>
       </div>
