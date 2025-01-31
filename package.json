@@ -1,11 +1,14 @@
 {
   "dependencies": {
+    "@reduxjs/toolkit": "^2.5.1",
     "autoprefixer": "^10.4.20",
     "parcel": "^2.13.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0",
     "react-router": "^7.1.1",
-    "react-router-dom": "^7.1.1"
+    "react-router-dom": "^7.1.1",
+    "uuid": "^11.0.5"
   },
   "name": "namaste-react",
   "version": "1.0.0",

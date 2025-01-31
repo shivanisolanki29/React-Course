@@ -89,7 +89,7 @@ const Body = () => {
       <div className="flex flex-wrap justify-center">
         {filterRestaurant.map((restaurant, key) => (
           <div key={restaurant?.info?.id}>
-            {console.log(restaurant?.info?.aggregatedDiscountInfoV3)}
+            {/* {console.log(restaurant?.info?.aggregatedDiscountInfoV3)} */}
             <Link to={"/restaurants/" + restaurant?.info?.id}>
               {restaurant?.info?.aggregatedDiscountInfoV3 !== undefined ? (
                 <RestaurantCardDiscounted resData={restaurant} />
