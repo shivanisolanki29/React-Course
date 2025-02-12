@@ -196,3 +196,8 @@ const config = {
 };
 
 module.exports = config;
+
+module.exports = {
+  testEnvironment: "jest-fixed-jsdom",
+};
+

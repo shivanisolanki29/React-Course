@@ -14,6 +14,7 @@ const ItemList = ({ items }) => {
     <div className="">
       {items.map((item) => (
         <div
+        data-testid="foodItems"
           key={uuidv4()}
           className="my-4 p-2 border-b-2 border-gray-300 flex justify-between"
         >

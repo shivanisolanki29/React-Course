@@ -2,26 +2,53 @@ import Contact from "../Contact";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-test("Should load contact us component", () => {
-  render(<Contact />);
+describe("Contact Us page Test Case", () => {
+  beforeAll(() => {
+    // console.log("Before All");
+  });
 
-  const heading = screen.getByRole("heading");
+  beforeEach(() => {
+    // console.log("Before Each");
+  });
 
-  expect(heading).toBeInTheDocument();
-});
+  afterAll(() => {
+    // console.log("After All");
+  });
 
-test("Should load placeholder inside contactUs component", () => {
-  render(<Contact />);
+  afterEach(() => {
+    // console.log("After each");
+  });
 
-  const placeholder = screen.getAllByPlaceholderText("name");
+  test("Should load contact us component", () => {
+    render(<Contact />);
 
-  expect(placeholder.length).toBe(1);
-});
+    const heading = screen.getByRole("heading");
 
-test("Should load button inside contactUs component", () => {
-  render(<Contact />);
+    expect(heading).toBeInTheDocument();
+  });
 
-  const button = screen.getByText("Submit");
+  test("Should load placeholder inside contactUs component", () => {
+    render(<Contact />);
 
-  expect(button).toBeInTheDocument();
+    const placeholder = screen.getAllByPlaceholderText("name");
+
+    expect(placeholder.length).toBe(1);
+  });
+
+  test("Should load button inside contactUs component", () => {
+    render(<Contact />);
+
+    const button = screen.getByText("Submit");
+
+    expect(button).toBeInTheDocument();
+  });
+
+  test("Should load 2 input boxes on the Contact component", () => {
+    render(<Contact />);
+
+    const buttons = screen.getAllByRole("textbox");
+    // console.log(buttons.length);
+
+    expect(buttons.length).toBe(2);
+  });
 });

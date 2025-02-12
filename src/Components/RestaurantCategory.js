@@ -1,7 +1,7 @@
 import ItemList from "./ItemList";
 
 const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
-  // console.log(data?.itemCards);
+  // console.log(data?.title);
   // console.log(showItems); //false
 
   const handleClick = () => {
@@ -10,7 +10,11 @@ const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
   };
   return (
     <div className=" my-2 p-4 bg-white shadow-lg">
-      <div className="flex justify-between" onClick={handleClick}>
+      <div
+        className="flex justify-between"
+        data-testid=""
+        onClick={handleClick}
+      >
         <span className="font-bold">
           {data?.title} ({data?.itemCards.length})
         </span>

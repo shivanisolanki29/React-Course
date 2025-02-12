@@ -17,9 +17,13 @@ const Body = () => {
 
   const handleClick = () => {
     const filteredList = listOfRestaurant.filter(
-      (res) => res.info.avgRating > 4
+      (res) => res.info.avgRating > 4.5
     );
-    setListOfRestaurant(filteredList);
+    // filteredList.map((r) => console.log(r.info.name));
+
+    // console.log(filteredList.length);
+    setfilterRestaurant(filteredList);
+    // console.log("helo");
   };
 
   useEffect(() => {
@@ -30,6 +34,7 @@ const Body = () => {
     const data = await fetch(RESTAURANT_API);
     const json = await data.json();
 
+    // console.log(json);
     setListOfRestaurant(
       json?.data?.cards[4].card.card.gridElements.infoWithStyle.restaurants
     );
@@ -51,9 +56,10 @@ const Body = () => {
       <div className="m-4 flex justify-center items-center">
         <div className="m-2 p-2 px-2 flex justify-between">
           <input
+            data-testid="searchIn"
             className="border-2 border-gray-300 rounded-l-md "
             type="text"
-            placeholder="  search res..."
+            placeholder="search res..."
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           ></input>
@@ -73,8 +79,15 @@ const Body = () => {
         <button
           className="m-2 p-2 px-10 bg-orange-300 shadow-lg rounded-md"
           onClick={() => handleClick()}
+          // onClick={() => {
+          //   const filteredList = listOfRestaurant.filter(
+          //     (res) => res.info.avgRating > 4.2
+          //   );
+          //   console.log(filteredList.length);
+          //   setfilterRestaurant(filteredList);
+          // }}
         >
-          Top rated restaurat
+          Top rated restaurant
         </button>
       </div>
       <div>
@@ -88,16 +101,16 @@ const Body = () => {
 
       <div className="flex flex-wrap justify-center">
         {filterRestaurant.map((restaurant, key) => (
-          <div key={restaurant?.info?.id}>
-            {/* {console.log(restaurant?.info?.aggregatedDiscountInfoV3)} */}
-            <Link to={"/restaurants/" + restaurant?.info?.id}>
-              {restaurant?.info?.aggregatedDiscountInfoV3 !== undefined ? (
-                <RestaurantCardDiscounted resData={restaurant} />
-              ) : (
-                <ResturantCard resData={restaurant} />
-              )}
-            </Link>
-          </div>
+          <Link
+            to={"/restaurants/" + restaurant?.info?.id}
+            key={restaurant?.info?.id}
+          >
+            {restaurant?.info?.aggregatedDiscountInfoV3 !== undefined ? (
+              <RestaurantCardDiscounted resData={restaurant} />
+            ) : (
+              <ResturantCard resData={restaurant} />
+            )}
+          </Link>
         ))}
       </div>
     </div>
